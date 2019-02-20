@@ -11,6 +11,7 @@ const app = express();
 const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('client'));
 
 const SECRET_KEY = 'ipochvamdabegambate';
 const expiresIn = '48h';
@@ -25,6 +26,7 @@ const getJSON = compose(
   fs.readFileSync,
   getJSONPath,
 )
+
 
 function createToken(payload) {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn });
